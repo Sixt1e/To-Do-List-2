@@ -41,6 +41,7 @@ h2 {
 
 #task_form {
   display: flex;
+  margin-right: 20px;
 }
 
 input,
