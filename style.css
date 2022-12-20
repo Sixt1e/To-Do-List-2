@@ -133,3 +133,26 @@ button {
   margin-top: 10px;
   color: var(--font-color);
 }
+
+@media (max-width: 767px) {
+  .container {
+    max-width: none;
+    margin: 0 auto;
+  }
+
+  .text {
+    width: 350px;
+  }
+}
+
+@media (max-width: 450px) {
+  .container {
+    max-width: none;
+    margin: 0 auto;
+  }
+
+  .text {
+    width: 200px;
+  }
+}
+
