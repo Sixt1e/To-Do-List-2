@@ -174,14 +174,18 @@ input {
   }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 424px) {
   .container {
     max-width: none;
     margin: 0 auto;
     overflow: hidden;
   }
 
-  .text {
-    width: 200px;
+   .text {
+    width: 350px;
+  }
+
+  .actions {
+    width: 350px;
   }
 }
