@@ -1,15 +1,16 @@
 * {
   padding: 0;
   margin: 0;
-  font-family: "Hanken Grotesk", sans-serif;
+  font-family: "IBM Plex Mono", monospace;
 }
 
 :root {
-  --body-color: #f4f3ee;
+  --body-color: #539eac;
   --input-color: #bcb8b1;
-  --border-color: #8a817c;
-  --button-color: #e0afa0;
-  --font-color: #463f3a;
+  --border-color: #000000;
+  --button-color: #bcb8b1;
+  --font-color: #000000;
+  --bg-color: #0200d0;
 }
 
 body {
@@ -58,27 +59,31 @@ button {
   border: 1px solid var(--border-color);
   padding: 10px 5px 10px 5px;
   padding-left: 10px;
-  border-radius: 30px;
   margin-right: 1px;
+  background: var(--input-color);
   color: var(--font-color);
 }
 
 #task_submit {
   margin-top: 10px;
-  margin-left: 30px;
+  margin-left: 10px;
   font-size: 16px;
   font-weight: 700;
+  border: 1px solid #000000;
   color: var(--font-color);
   cursor: pointer;
   transition: 0.4s;
   background: var(--button-color);
-  border-radius: 30px;
   padding: 15px;
+  transition: ease-in 0.3s;
 }
 
 #task_submit:hover {
-  transform: scale(1.1);
-  opacity: 0.8;
+  background: var(--bg-color);
+  color: var(--button-color);
+  transition: ease-out 0.3s;
+  border-style: dotted;
+  border-color: var(--button-color);
 }
 
 #task_submit:active {
@@ -87,38 +92,44 @@ button {
 
 #tasks .task {
   display: flex;
+  flex-direction: column-reverse;
+}
+
+input {
+  border: 1px solid var(--border-color);
 }
 
 .text {
   margin: 0 auto;
   width: 500px;
-  margin-top: 10px;
-  border: 1px solid var(--border-color);
-  padding: 10px 5px 10px 5px;
+  border: 1px solid var(#ffffff);
+  padding: 20px 5px 20px 5px;
   padding-left: 15px;
-  border-radius: 20px;
   color: var(--font-color);
+  background: var(--button-color);
 }
 
 .actions {
-  margin-top: 18px;
-  margin-left: 20px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-color);
+  padding: 10px 5px 10px 5px;
+  padding-left: 15px;
+  width: 500px;
+  margin-top: 20px;
   display: flex;
-  float: right;
-  padding-right: 20px;
 }
 
 .task .actions button {
   cursor: pointer;
   margin: 0 0.5rem;
   font-weight: 300;
-  text-transform: uppercase;
   transition: 0.4s;
+  color: var(--input-color);
 }
 
 .task .actions button:hover {
   opacity: 0.8;
-  text-decoration: underline var(--border-color);
+  text-decoration: underline var(--input-color);
 }
 
 .task .actions button:active {
@@ -135,13 +146,30 @@ button {
   color: var(--font-color);
 }
 
+@media (max-width: 1024px) {
+  .container {
+    max-width: none;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+}
+
 @media (max-width: 767px) {
   .container {
     max-width: none;
     margin: 0 auto;
+    overflow: hidden;
+  }
+
+  #task_input {
+    width: 350px;
   }
 
   .text {
+    width: 350px;
+  }
+
+  .actions {
     width: 350px;
   }
 }
@@ -150,10 +178,10 @@ button {
   .container {
     max-width: none;
     margin: 0 auto;
+    overflow: hidden;
   }
 
   .text {
     width: 200px;
   }
 }
-
