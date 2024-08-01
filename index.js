@@ -7,7 +7,7 @@ window.addEventListener("load", () => {
 
   function loadTasks() {
     list_el.innerHTML = "";
-    tasks.forEach((task) => {
+    tasks.forEach((task, index) => {
       const task_el = document.createElement("div");
       task_el.classList.add("task");
 
@@ -50,6 +50,8 @@ window.addEventListener("load", () => {
         } else {
           task_edit_el.innerText = "Edit";
           task_input_el.setAttribute("readonly", "readonly");
+          tasks[index] = task_input_el.value;
+          localStorage.setItem("tasks", JSON.stringify(tasks));
         }
       });
 
