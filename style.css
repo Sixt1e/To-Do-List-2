@@ -198,10 +198,22 @@ input {
 }
 /* check */
 .checkbox {
+  position: absolute;
+  margin-top: 20px;
+  margin-left: 480px;
+  background: #e40000;
   width: 20px;
   height: 20px;
-  float: right;
   cursor: pointer;
+}
+
+.checkbox:checked {
+  background: #000000;
+}
+
+.checkbox::before {
+  display: none;
+  background: #ffffff;
 }
 
 @media (max-width: 1024px) {
@@ -229,6 +241,11 @@ input {
 
   .actions {
     width: 350px;
+  }
+
+  .checkbox {
+    margin-top: 20px;
+    margin-left: 330px;
   }
 }
 

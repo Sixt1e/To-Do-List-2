@@ -4,6 +4,7 @@ window.addEventListener("load", () => {
   const list_el = document.querySelector("#tasks");
 
   let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  let completedTasks = JSON.parse(localStorage.getItem("completedTasks")) || [];
 
   function loadTasks() {
     list_el.innerHTML = "";
@@ -16,11 +17,27 @@ window.addEventListener("load", () => {
 
       task_el.appendChild(task_content_el);
 
+      //checkbox
+
+      const task_checkbox_el = document.createElement("input");
+      task_checkbox_el.type = "checkbox";
+      task_checkbox_el.classList.add("checkbox");
+
+      if (completedTasks.includes(index)) {
+        task_checkbox_el.checked = true;
+      }
+
+      task_content_el.appendChild(task_checkbox_el);
+
       const task_input_el = document.createElement("input");
       task_input_el.classList.add("text");
       task_input_el.type = "text";
       task_input_el.value = task;
       task_input_el.setAttribute("readonly", "readonly");
+
+      if (completedTasks.includes(index)) {
+        task_input_el.style.textDecoration = "line-through";
+      }
 
       task_content_el.appendChild(task_input_el);
 
@@ -42,6 +59,24 @@ window.addEventListener("load", () => {
 
       list_el.appendChild(task_el);
 
+      task_checkbox_el.addEventListener("change", (evt) => {
+        if (task_checkbox_el.checked) {
+          task_input_el.style.textDecoration = "line-through";
+          completedTasks.push(index);
+          localStorage.setItem(
+            "completedTasks",
+            JSON.stringify(completedTasks)
+          );
+        } else {
+          task_input_el.style.textDecoration = "none";
+          completedTasks = completedTasks.filter((i) => i !== index);
+          localStorage.setItem(
+            "completedTasks",
+            JSON.stringify(completedTasks)
+          );
+        }
+      });
+
       task_edit_el.addEventListener("click", (evt) => {
         if (task_edit_el.innerText.toLowerCase() == "edit") {
           task_edit_el.innerText = "Save";
@@ -57,7 +92,9 @@ window.addEventListener("load", () => {
 
       task_delete_el.addEventListener("click", (evt) => {
         tasks = tasks.filter((t) => t !== task);
+        completedTasks = completedTasks.filter((i) => i !== index);
         localStorage.setItem("tasks", JSON.stringify(tasks));
+        localStorage.setItem("completedTasks", JSON.stringify(completedTasks));
         loadTasks();
       });
     });
