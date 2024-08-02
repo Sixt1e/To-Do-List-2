@@ -68,9 +68,19 @@ window.addEventListener("load", () => {
   form.addEventListener("submit", (evt) => {
     evt.preventDefault();
 
+    const putSomething = document.querySelector(".putSomething");
+    const okBtn = document.querySelector(".ok_btn");
+
+    okBtn.addEventListener("click", (evt) => {
+      putSomething.style.display = "none";
+    });
+
     if (input.value === "") {
-      alert("Put something on the list");
+      putSomething.style.display = "block";
+      document.body.appendChild(putSomething);
       return;
+    } else {
+      putSomething.style.display = "none";
     }
 
     tasks.push(input.value);
